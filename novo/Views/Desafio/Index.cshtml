@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<form action="Index" method="post">
+    <h2>Desafio de clicar colocar um número no campo, apertar no botão + e acrescentar com o que estiver na label</h2>
+    <table>
+        <tr>
+            <td><input type="text" id="txt_antigo" name="txt_antigo" value="@ViewData["Resultado"]"/></td>
+            <td><input type="text" id="txt_numero" name="txt_numero" /></td>
+
+            <td><input type="submit" id="btn_add" name="btn_add" value="+" /></td>
+
+            <td>Resultado = </td>
+            <td>@ViewData["Resultado"]</td>
+        </tr>
+    </table>
+</form>
+
+

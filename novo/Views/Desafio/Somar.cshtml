@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Somar";
+}
+
+<form action="Somar" method="post">
+    <h2>Desafio de clicar colocar um número no campo, apertar no botão + e acrescentar com o que estiver na label</h2>
+    <table>
+        <tr>
+            <td><input type="text" id="txt_numero" name="txt_numero" value="@ViewData["Resultado"]" /></td>
+
+            <td><input type="submit" id="btn_add" name="btn_add" value="+" /></td>
+
+            <td>Resultado = </td>
+            <td style="color:@ViewBag._Cor">@ViewData["Mensagem"]</td>
+        </tr>
+    </table>
+</form>
+
+

@@ -1,0 +1,29 @@
+﻿@model novo.Models.Aluno
+@{
+    ViewBag.Title = "CadastrarAluno";
+}
+
+<h2>CadastrarAluno</h2>
+
+@using (Html.BeginForm("CadastrarAluno", "Aluno", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(x => x.Nome)
+    @Html.TextBoxFor(x => x.Nome)
+    <br />
+
+    @Html.LabelFor(x => x.Idade)
+    @Html.TextBoxFor(x => x.Idade)
+    <br />
+
+    @Html.LabelFor(x => x.Sexo)
+    @Html.TextBoxFor(x => x.Sexo)
+    @Html.ValidationMessageFor(x => x.Sexo)
+    <br />
+    @Html.LabelFor(x => x.Peso)
+    @Html.TextBoxFor(x => x.Peso)
+    @Html.ValidationMessageFor(x => x.Peso)
+    <br />
+    <input type="submit" value="Salvar" />
+    <br />
+}

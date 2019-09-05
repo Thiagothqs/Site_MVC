@@ -1,0 +1,46 @@
+﻿@model novo.Models.Aluno
+@{
+    ViewBag.Title = "Novo_Aluno";
+}
+
+<h2>Novo_Aluno</h2>
+<style>
+    .validation-summary-errors {
+        color: red !important;
+    }
+
+    .minha_css {
+        color: blue;
+    }
+</style>
+
+@*<form method="post">*@
+@using (Html.BeginForm("Novo_Aluno", "Aluno", FormMethod.Post))
+{
+    @*Nome*@
+    @*<input type="text" id="Nome" name="Nome" />*@
+
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(x => x.Nome, new { @class = "minha_css" })
+    @Html.TextBoxFor(x => x.Nome)
+    <br />
+    @*Idade
+        <input type="text" id="Idade" name="Idade" />*@
+
+    @Html.LabelFor(x => x.Idade)
+    @Html.TextBoxFor(x => x.Idade)
+    <br />
+    @*Sexo
+        <input type="text" id="Sexo" name="Sexo" />*@
+
+    @Html.LabelFor(x => x.Sexo)
+    @Html.TextBoxFor(x => x.Sexo)
+    @Html.ValidationMessageFor(x => x.Sexo)
+    <br />
+    @Html.LabelFor(x => x.Peso)
+    @Html.TextBoxFor(x => x.Peso)
+    @Html.ValidationMessageFor(x => x.Peso)
+    <br />
+    <input type="submit" value="Salvar" />
+}
+@*</form>*@

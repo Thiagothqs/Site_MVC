@@ -1,0 +1,25 @@
+﻿@model novo.Models.Aluno
+@{
+    ViewBag.Title = "Create";
+}
+
+<form action="Create" method="post">
+    <h2>Novo Cliente</h2>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td><input type="text" id="txt_id" name="txt_id" value="@ViewData["Id_Pessoa"]" /></td>
+            <td>Nome</td>
+            <td><input type="text" id="txt_nome" name="txt_nome" value="@ViewBag._Nome" /></td>
+            <td>Idade</td>
+            <td><input type="text" id="txt_idade" name="txt_idade" value="@ViewData["Idade"]" /></td>
+
+            <td>@ViewData["Mensagem"]</td>
+
+            <td><input type="submit" id="btn_salvar" name="btn_salvar" value="SALVAR" /></td>
+
+            <td><input type="text" id="lista_alunos" name="lista_alunos" value="@ViewData["lista_alunos"]" /></td>
+        </tr>
+    </table>
+</form>
+
