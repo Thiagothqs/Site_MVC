@@ -1,0 +1,16 @@
+﻿@model novo.Models.Noticias
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Alterar Dados</h2>
+
+ID: @Html.TextBoxFor(x=> x.ID, new { style="readonly:off" })
+<br />
+ID_Topico: @Html.TextBoxFor(x=> x.ID_Topico)
+<br />
+Titulo: @Html.TextBoxFor(x=> x.Titulo)
+<br />
+Descrição: @Html.TextBoxFor(x=> x.Descricao)
+<br />
+<input type="submit" id="" name="" value="EDITAR" />

@@ -8,12 +8,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{944F368C-7A0B-4A48-A890-76E42DC67662}</ProjectGuid>
+    <ProjectGuid>{D2095517-C3DC-4CF9-8E06-0490DC0BFA8C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>novo</RootNamespace>
-    <AssemblyName>novo</AssemblyName>
+    <RootNamespace>AtividadeAvaliativa_PrimeiroB</RootNamespace>
+    <AssemblyName>AtividadeAvaliativa_PrimeiroB</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -120,20 +120,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AlunoController.cs" />
-    <Compile Include="Controllers\DesafioController.cs" />
-    <Compile Include="Controllers\FacearController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NoticiaController.cs" />
-    <Compile Include="Controllers\PessoaController.cs" />
-    <Compile Include="Controllers\ProfessorController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Aluno.cs" />
-    <Compile Include="Models\Noticias.cs" />
-    <Compile Include="Models\Pessoa.cs" />
-    <Compile Include="Models\Professor.cs" />
+    <Compile Include="Models\Noticia.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,28 +166,23 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Facear\Index.cshtml" />
-    <Content Include="Views\Facear\Sobre.cshtml" />
-    <Content Include="Views\Facear\Professores.cshtml" />
-    <Content Include="Views\Facear\Cursos.cshtml" />
-    <Content Include="Views\Pessoa\Index.cshtml" />
-    <Content Include="Views\Pessoa\Details.cshtml" />
-    <Content Include="Views\Aluno\Create.cshtml" />
-    <Content Include="Views\Desafio\Index.cshtml" />
-    <Content Include="Views\Desafio\Somar.cshtml" />
-    <Content Include="Views\Aluno\New_Aluno.cshtml" />
-    <Content Include="Views\Aluno\Novo_Aluno.cshtml" />
-    <Content Include="Views\Professor\Create.cshtml" />
-    <Content Include="Views\Aluno\CadastrarAluno.cshtml" />
-    <Content Include="Views\Aluno\ListarAluno.cshtml" />
-    <Content Include="Views\Aluno\AlterarAluno.cshtml" />
-    <Content Include="Views\Aluno\DeletarAluno.cshtml" />
-    <Content Include="Views\Noticia\Create.cshtml" />
-    <Content Include="Views\Noticia\Edit.cshtml" />
-    <Content Include="Views\Noticia\Index.cshtml" />
-    <Content Include="Views\Shared\_Topo.cshtml" />
-    <Content Include="Views\Shared\_Rodape.cshtml" />
-    <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\CadastrarUsuario.cshtml" />
+    <Content Include="Views\Menu\CadastrarNoticia.cshtml" />
+    <Content Include="Views\Menu\Esporte.cshtml" />
+    <Content Include="Views\Menu\Noticias.cshtml" />
+    <Content Include="Views\Menu\Famosos.cshtml" />
+    <Content Include="Views\Menu\TecnologiaGames.cshtml" />
+    <Content Include="Views\Menu\Politica.cshtml" />
+    <Content Include="Views\Menu\Carros.cshtml" />
+    <Content Include="Views\Menu\AlterarNoticia.cshtml" />
+    <Content Include="Views\Menu\DeletarNoticia.cshtml" />
+    <Content Include="Views\Menu\EsporteUsuario.cshtml" />
+    <Content Include="Views\Menu\NoticiasUsuario.cshtml" />
+    <Content Include="Views\Menu\FamososUsuario.cshtml" />
+    <Content Include="Views\Menu\TecnologiaGamesUsuario.cshtml" />
+    <Content Include="Views\Menu\PoliticaUsuario.cshtml" />
+    <Content Include="Views\Menu\CarrosUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -227,9 +216,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50103</DevelopmentServerPort>
+          <DevelopmentServerPort>51889</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50103/</IISUrl>
+          <IISUrl>http://localhost:51889/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

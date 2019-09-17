@@ -1,0 +1,31 @@
+﻿@model AtividadeAvaliativa_PrimeiroB.Models.Noticia
+@{
+    ViewBag.Title = "CadastrarNoticia";
+}
+
+<h2>Cadastrar Noticia</h2>
+
+<td>@Html.ActionLink("Esporte", "Esporte", "Menu")</td>
+<td>@Html.ActionLink("Noticias", "Noticias", "Menu")</td>
+<td>@Html.ActionLink("Famosos", "Famosos", "Menu")</td>
+<td>@Html.ActionLink("Tecnologia & Games", "TecnologiaGames", "Menu")</td>
+<td>@Html.ActionLink("Politica", "Politica", "Menu")</td>
+<td>@Html.ActionLink("Carros", "Carros", "Menu")</td>
+
+@using (Html.BeginForm("CadastrarNoticia", "Menu", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(x => x.Titulo)
+    @Html.TextBoxFor(x => x.Titulo)
+    <br />
+
+    @Html.LabelFor(x => x.Descricao)
+    @Html.TextBoxFor(x => x.Descricao)
+    <br />
+
+    @Html.LabelFor(x => x.Classificacao)
+    @Html.TextBoxFor(x => x.Classificacao)
+    <br />
+    <input type="submit" value="Salvar" />
+    <br />
+}

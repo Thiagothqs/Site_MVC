@@ -29,28 +29,7 @@
         </div>
     </div>
     <div class="container body-content">
-        <strong style="color:green">UNIFACEAR</strong>
-        <div>
-            <table width="100%">
-                <tr>
-                    <td><a href="/Facear/Index">Principal</a></td>
-                    <td>@Html.ActionLink("Veja Sobre", "Sobre", "Facear")</td>
-                    <td>@Html.ActionLink("Lista de Professores", "Professores", "Facear")</td>
-                    <td>@Html.ActionLink("Cursos da UNIFACEAR", "Cursos", "Facear")</td>
-                </tr>
-            </table>
-        </div>
-        @RenderPage("~/Views/Shared/_Topo.cshtml")
         @RenderBody()
-        @if (IsSectionDefined("rodape"))
-        {
-            @RenderSection("rodape")
-        }
-        else
-        {
-            @Html.Partial("_Rodape")
-        }
-
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>

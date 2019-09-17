@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace novo
+namespace AtividadeAvaliativa_PrimeiroB
 {
     public class RouteConfig
     {

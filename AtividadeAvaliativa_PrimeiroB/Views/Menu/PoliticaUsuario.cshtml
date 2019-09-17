@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AtividadeAvaliativa_PrimeiroB.Models.Noticia>
+
+@{
+    ViewBag.Title = "PoliticaUsuario";
+}
+
+<h2>PoliticaUsuario</h2>
+
+<td>@Html.ActionLink("Esporte", "EsporteUsuario", "Menu")</td>
+<td>@Html.ActionLink("Noticias", "NoticiasUsuario", "Menu")</td>
+<td>@Html.ActionLink("Famosos", "FamososUsuario", "Menu")</td>
+<td>@Html.ActionLink("Tecnologia & Games", "TecnologiaGamesUsuario", "Menu")</td>
+<td>@Html.ActionLink("Politica", "PoliticaUsuario", "Menu")</td>
+<td>@Html.ActionLink("Carros", "CarrosUsuario", "Menu")</td>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Noticia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Classificacao)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Noticia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classificacao)
+            </td>
+        </tr>
+    }
+
+</table>

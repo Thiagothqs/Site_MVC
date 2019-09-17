@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AtividadeAvaliativa_PrimeiroB.Models.Noticia>
+
+@{
+    ViewBag.Title = "Noticias";
+}
+
+<h2>Noticias</h2>
+
+<td>@Html.ActionLink("Esporte", "Esporte", "Menu")</td>
+<td>@Html.ActionLink("Noticias", "Noticias", "Menu")</td>
+<td>@Html.ActionLink("Famosos", "Famosos", "Menu")</td>
+<td>@Html.ActionLink("Tecnologia & Games", "TecnologiaGames", "Menu")</td>
+<td>@Html.ActionLink("Politica", "Politica", "Menu")</td>
+<td>@Html.ActionLink("Carros", "Carros", "Menu")</td>
+
+<p>
+    @Html.ActionLink("Cadastrar Noticia", "CadastrarNoticia")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Noticia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Classificacao)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Noticia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classificacao)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar", "AlterarNoticia", new { id = item.Id_Noticia }) |
+                @Html.ActionLink("Excluir", "DeletarNoticia", new { id = item.Id_Noticia })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<novo.Models.Noticias>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listagem de Noticias</h2>
+@Html.ActionLink("Nova Noticia", "Create");
+<table width="100%">
+    <tr>
+        <td>ID</td>
+        <td>Tipo</td>
+        <td>Titulo</td>
+        <td>Descrição</td>
+        <td>Editar</td>
+        <td>Deletar</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.ID</td>
+        @if (item.ID_Topico == 1)
+        {
+            <td>ESPORTES</td>
+        }
+        else if (item.ID_Topico == 2)
+        {
+            <td>JORNALISMO</td>
+        }
+        <td>@item.Titulo</td>
+        <td>@item.Descricao</td>
+        <td>@Html.ActionLink("Editar", "Edit", new { id = item.ID })</td>
+        <td>@Html.ActionLink("Deletar", "Delete", new { id = item.ID })</td>
+    </tr>
+    }
+</table>
+@section rodape{
+    <p>Aqui fica o rodapé somente desta página</p>
+}

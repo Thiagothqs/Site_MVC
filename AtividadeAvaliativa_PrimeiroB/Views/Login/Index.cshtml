@@ -1,0 +1,24 @@
+﻿@model AtividadeAvaliativa_PrimeiroB.Models.Usuario
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Index", "Login", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(x => x.Nome)
+    @Html.TextBoxFor(x => x.Nome)
+    <br />
+    @Html.LabelFor(x => x.Senha)
+    @Html.TextBoxFor(x => x.Senha)
+    <br />
+    @Html.LabelFor(x => x.Tipo)
+    @Html.TextBoxFor(x => x.Tipo)
+    <br />
+    <input type="submit" value="Salvar" />
+    <br />
+    <li>@Html.ActionLink("Cadastrar Usuário", "CadastrarUsuario", "Login")</li>
+}
+
