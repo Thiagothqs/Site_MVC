@@ -1,4 +1,4 @@
-﻿using novo.Models;
+﻿/*using novo.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -152,4 +152,4 @@ namespace novo.Controllers
             return RedirectToAction("ListarAluno");
         }
     }
-}
+}*/

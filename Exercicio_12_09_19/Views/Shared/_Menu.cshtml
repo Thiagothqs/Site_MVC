@@ -3,29 +3,26 @@
 }
 
 <!DOCTYPE html>
-
+<style>
+    .menu {
+        float: left;
+        width: 200px;
+        height: 450px;
+        background-color: green;
+    }
+</style>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
 </head>
 <body>
-    <div>
-        <table width="30%">
-            <tr>
-                <td>ID</td>
-                <br />
-                <td>Tipo</td>
-                <br />
-                <td>Titulo</td>
-                <br />
-                <td>Descrição</td>
-                <br />
-                <td>Editar</td>
-                <br />
-                <td>Deletar</td>
-            </tr>
-        </table>
+    <div class="menu">
+        <ul>
+            <li>@Html.ActionLink("Boné","Bone")</li>
+            <li>@Html.ActionLink("Meia", "Meia")</li>
+            <li>@Html.ActionLink("Sapato", "Sapato")</li>
+        </ul>
     </div>
 </body>
 </html>

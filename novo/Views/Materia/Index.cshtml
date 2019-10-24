@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<form id="form_id">
+    @*<iframe src="http://www.unifacear.edu.br" height="300" width="100%"></iframe>
+        <iframe src="http://possim.gear.host/Dados_Pesquisa/Listar_Async" height="300" width="100%""></iframe>*@
+
+
+    <div>Unifacear - Araucária - PR</div>
+    <div id="div_curso">CURSO DE SISTEMAS DE INFORMAÇÃO</div>
+    NOME DO ALUNO: <input class="aluno" type="text" id="nome" name="nome" />
+    <br />
+    IDADE DO ALUNO: <input class="aluno" type="number" id="idade" name="idade" />
+    <br />
+    <input type="button" id="btn_evento" name="btn_evento" onclick="Muda_Cor()" value="Vermelho" />
+    <br />
+    <input type="button" id="btn_verde" name="btn_verde" onclick="Muda_Cor_Verde()" value="Verde" />
+    <br />
+    <input type="button" id="btn_abre_div" value="Mostrar DIV" onclick="Mostra_Div()"/>
+
+    <input type="button" id="btn_fechar_div" value="Esconde DIV" onclick="Ocultar_Div()"/>
+    <br />
+    <div id="div_texto">
+        Aqui estão os melhores #énóis
+    </div>
+</form>
+@section scripts{
+    <script>
+        function Mostra_Div() {
+            $("#div_texto").show();
+        }
+
+        function Ocultar_Div() {
+            $("#div_texto").hide();
+        }
+
+        //Executa somente depois que carregou todo o HTML
+        $(document).ready(function () {
+            //alert('Ola Mundo!');
+        });
+
+        function Muda_Cor() {
+            $("#div_curso").css("color", "red").css("font-size", "25px")
+        }
+
+        function Muda_Cor_Verde() {
+            $("#div_curso").css("color", "green").css("font-size", "12px")
+            $("#btn_verde").css("background-color", "green")
+            $("#form_id").css("background-color", "green")
+            $("input.aluno").css("background-color", "green")
+        }
+    </script>
+}

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProvaBimestral.Models.Produto>
+
+@{
+    ViewBag.Title = "Celular";
+}
+
+<h2>Celular</h2>
+
+<p>
+    @if (Session["login"].Equals("adm") && Session["senha"].Equals("123"))
+    {
+        @Html.ActionLink("Cadastrar Produto", "CadastrarProduto")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Produto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Produto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Preco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria)
+        </td>
+        <td>
+            @Html.ActionLink("Dados do Produto", "DadosDoProduto", new { id = item.Id_Produto })
+            @if (Session["login"].Equals("adm") && Session["senha"].Equals("123"))
+            {
+                @Html.ActionLink("Alterar", "AlterarProduto", new { id = item.Id_Produto })
+                @Html.ActionLink("Excluir", "DeletarProduto", new { id = item.Id_Produto })
+            }
+        </td>
+    </tr>
+}
+
+</table>

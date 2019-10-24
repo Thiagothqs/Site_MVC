@@ -1,0 +1,32 @@
+﻿@model IEnumerable<novo.Models.Academico>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Academicos</h2>
+
+Nome - Sexo - Ordenar - Qtd (Take) - Buscar
+Criar academico e alterar academico - com 2 matérias cadastradas
+
+<table width="100%" border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Sexo</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id_Academico</td>
+            <td>@item.Nome</td>
+            <td>@item.Sexo</td>
+            <td>
+                @foreach(var nota in item.Nota)
+                {
+                    @nota.Nome_Materia
+                    <br />
+                }
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,20 @@
+﻿@model novo.Models.Produto
+@{
+    ViewBag.Title = "Delete";
+}
+
+<form method="post">
+    @Html.ValidationSummary()
+    <h2>Excluir Produto</h2>
+
+    Id @Html.TextBoxFor(x => x.Id_Produto)
+    <br />
+    Nome @Html.TextBoxFor(x => x.Descricao)
+    <br />
+    Quantidade @Html.TextBoxFor(x => x.Quantidade)
+    <br />
+    Preco_Venda @Html.TextBoxFor(x => x.Preco_Venda)
+    <br />
+    Deseja realmente EXCLUIR este produto?
+    <input type="submit" value="SIM, QUERO!" />
+</form>

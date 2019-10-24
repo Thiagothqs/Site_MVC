@@ -16,7 +16,7 @@ namespace novo
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Noticia", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Materia", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

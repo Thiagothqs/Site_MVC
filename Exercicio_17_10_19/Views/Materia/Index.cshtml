@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Exercicio_17_10_19.Materia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conteudo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disponivel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Excluido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Academico)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Materia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conteudo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disponivel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Excluido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Academico)
+        </td>
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id=item.Id_Materia }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id_Materia }) |
+            @Html.ActionLink("Cadastrar Notas", "Create", "Nota", new { id = item.Id_Materia }, null) |
+            @Html.ActionLink("Visualizar Notas", "Index", "Nota", new { id = item.Id_Materia }, null)
+        </td>
+    </tr>
+}
+
+</table>

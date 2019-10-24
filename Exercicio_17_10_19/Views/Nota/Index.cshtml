@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Exercicio_17_10_19.Nota>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Nota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nota_Materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nota_I)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nota_II)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nota_III)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nota_IIII)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Nota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Materia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nota_Materia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nota_I)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nota_II)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nota_III)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nota_IIII)
+        </td>
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id=item.Id_Nota }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

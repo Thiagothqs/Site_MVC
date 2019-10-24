@@ -1,0 +1,24 @@
+﻿@model Bimestral_PrimeiroB.Models.Pedido
+@{
+    ViewBag.Title = "CadastrarPedido";
+}
+
+<h2>CadastrarPedido</h2>
+
+@using (Html.BeginForm("CadastrarPedido", "Compra", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(x => x.Id_Cliente)
+    @Html.TextBoxFor(x => x.Id_Cliente)
+    <br />
+
+    @Html.LabelFor(x => x.Id_Vendedor)
+    @Html.TextBoxFor(x => x.Id_Vendedor)
+    <br />
+
+    @Html.LabelFor(x => x.Data_Pedido)
+    @Html.TextBoxFor(x => x.Data_Pedido)
+    <br />
+    <input type="submit" value="Salvar" />
+    <br />
+}

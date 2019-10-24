@@ -1,0 +1,19 @@
+﻿@model novo.Models.Produto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<form method="post">
+    @Html.ValidationSummary()
+    <h2>Alterar Produto</h2>
+
+    Id @Html.TextBoxFor(x => x.Id_Produto)
+    <br />
+    Nome @Html.TextBoxFor(x => x.Descricao)
+    <br />
+    Quantidade @Html.TextBoxFor(x => x.Quantidade)
+    <br />
+    Preco_Venda @Html.TextBoxFor(x => x.Preco_Venda)
+    <br />
+    <input type="submit" value="SALVAR" />
+</form>

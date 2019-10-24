@@ -1,0 +1,27 @@
+﻿@model novo.Models.Academico
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Academico", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(x => x.Nome)
+    @Html.TextBoxFor(x => x.Nome)
+    <br />
+    @Html.LabelFor(x => x.Sexo)
+    @Html.TextBoxFor(x => x.Sexo)
+    @Html.ValidationMessageFor(x => x.Sexo)
+    <br />
+    @Html.LabelFor(x => x.Ativo)
+    @Html.CheckBoxFor(x => x.Ativo)
+    <br />
+    @Html.LabelFor(x => x.Excluido)
+    <label>SIM</label>@Html.RadioButtonFor(x => x.Excluido, "true")
+    <label>NÃO</label>@Html.RadioButtonFor(x => x.Excluido, "false")
+    <br />
+    <input type="submit" value="Salvar" />
+    <br />
+}

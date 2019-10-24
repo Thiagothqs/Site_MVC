@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Exercicio_17_10_19.Academico>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<form >
+    Nome: <input type="text" id="nome" name="nome" /> Sexo: <input type="text" id="sexo" name="sexo" /> Ordernar: <input type="text" id="ordenar" name="ordernar" /> Quantidade: <input type="number" id="qtd" name="qtd" /> @Html.ActionLink("Buscar", "Search")
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Academico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Excluido)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Academico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Excluido)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar", "Edit", new { id = item.Id_Academico }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.Id_Academico }) |
+                @Html.ActionLink("Cadastrar Materia", "Create", "Materia", new { id = item.Id_Academico }, null) |
+                @Html.ActionLink("Visualizar Materias", "Index", "Materia", new { id = item.Id_Academico }, null)
+            </td>
+        </tr>
+    }
+
+</table>

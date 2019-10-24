@@ -1,0 +1,19 @@
+﻿@model ProvaBimestral.Models.Usuario
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Produto", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(x => x.Login)
+    @Html.TextBoxFor(x => x.Login)
+    <br />
+    @Html.LabelFor(x => x.Senha)
+    @Html.TextBoxFor(x => x.Senha)
+    <br />
+    <input type="submit" value="Salvar" />
+    <br />
+}
