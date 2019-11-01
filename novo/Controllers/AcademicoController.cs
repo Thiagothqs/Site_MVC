@@ -80,5 +80,48 @@ namespace novo.Controllers
             }
             return View();
         }
+
+        public ActionResult Listar_Academicos()
+        {
+            var lista = db.Academico.ToList();
+            return View(lista);
+        }
+
+        public ActionResult Cadastrar_Alunos_Notas()
+        {
+            return View();
+        }
+
+        public JsonResult Retorna_Lista_Academicos(string nome, string sexo, string ativo)
+        {
+            var lista = db.Academico.ToList();
+
+            if (nome != null && nome != "")
+            {
+                lista = db.Academico.Where(x => x.Nome.StartsWith(nome)).ToList();
+            }
+            else if (sexo != null && sexo != "")
+            {
+                lista = db.Academico.Where(x => x.Sexo.Equals(sexo)).ToList();
+            }
+            else if (ativo != null)
+            {
+                lista = db.Academico.Where(x => x.Ativo.Equals(ativo)).ToList();
+            }
+
+            List<Academico> lista_academicos = new List<Academico>();
+            foreach (var item in lista)
+            {
+                Academico ac = new Academico();
+                ac.Nome = item.Nome;
+                ac.Sexo = item.Sexo;
+                lista_academicos.Add(ac);
+            }
+
+            return Json(new
+            {
+                lista = lista_academicos
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

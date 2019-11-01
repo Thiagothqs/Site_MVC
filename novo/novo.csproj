@@ -258,6 +258,9 @@
     <Content Include="Views\Academico\Create.cshtml" />
     <Content Include="Views\Materia\Create.cshtml" />
     <Content Include="Views\Materia\Index.cshtml" />
+    <Content Include="Views\Materia\Outros_Comandos_Jquery.cshtml" />
+    <Content Include="Views\Academico\Listar_Academicos.cshtml" />
+    <Content Include="Views\Academico\Cadastrar_Alunos_Notas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

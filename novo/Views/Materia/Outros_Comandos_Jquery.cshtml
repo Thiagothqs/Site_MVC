@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Outros_Comandos_Jquery";
+}
+
+<h2>Outros_Comandos_Jquery</h2>
+
+<form>
+    <table width="100%">
+        <tr>
+            <td>Nome: <input type="text" id="txt_nome" name="txt_nome" /></td>
+            <td>Sobrenome: <input type="text" id="txt_sobrenome" name="txt_sobrenome" /></td>
+            <td>Nome e Sobrenome: <input type="text" id="txt_nome_sobrenome" name="txt_nome_sobrenome" /></td>
+            <td></td>
+            <td><input type="button" id="btn_mostra_nome" value="Mostra Nome" onclick="Mostra_Nome()" /></td>
+            <td><input type="button" id="btn_mostra_nome_msg" value="Mostra Nome Msg" onclick="Mostra_Nome_Msg()" /></td>
+            <td><input type="button" id="btn_desabilita_campo" value="Desabilita" onclick="Desabilita_Campo()" /></td>
+            <td><input type="button" id="btn_mostra_campo" value="Mostrar Campos" onclick="Mostrar_Campo()" /></td>
+        </tr>
+    </table>
+    <hr />
+    <input type="button" id="btn_mostra_texto" value="Mostrar Texto" onclick="Mostrar_Texto()" />
+    <div id="minha_div"></div>
+    <input type="button" id="btn_mostra_hora" value="Mostrar Hora" onclick="Busca_Dados()" />
+    <br />
+    <input type="button" id="btn_busca_qtd" value="Busca Qtd" onclick="Busca_Qtd()" />
+</form>
+@section scripts{
+    <script>
+        function Busca_Qtd() {
+            $.ajax({
+                url: '@Url.Action("Retorna_Qtd_Letras")',
+                type: 'POST',
+                data: { nome: $("#txt_nome").val(), sobrenome: $("#txt_sobrenome").val() },
+                success: function (data) {
+                    alert(data.qtd)
+                },
+                error: function (data) {
+                    alert('Errrouuuu');
+                    alert(data);
+                }
+            });
+        }
+
+        function Busca_Dados() {
+            $.ajax({
+                url: '@Url.Action("Retorna_Hora")',
+                type: 'POST',
+                data: {},
+                success: function (data) {
+                    alert(data.hora)
+                },
+                error: function (data) {
+                    alert('Errrouuuu');
+                    alert(data);
+                }
+            });
+        }
+
+        function Mostra_Numero() {
+            alert(1);
+        }
+
+        function Mostra_Hora() {
+            var data_hora = new Date();
+            var texto = "<h1 style='color:red'>" + data_hora.toDateString() + " - " + data_hora.getHours() + ":" + data_hora.getMinutes() + ":" + data_hora.getSeconds() + "</h1>";
+            $("#minha_div").html(texto);
+        }
+
+        //Executa somente depois que carregou todo o HTML
+        $(document).ready(function () {
+            @*$.ajax({
+                url: '@Url.Action("Retorna_Hora")',
+                type: 'POST',
+                data: {},
+                success: function (data) {
+                    alert(data.nome)
+                },
+                error: function (data) {
+
+                }
+            });*@
+
+
+            //Executa uma única vez
+            //window.setTimeout('Mostra_Numero()', 5000);
+
+            //Executa a cada 5 segundos
+            //window.setInterval('Mostra_Numero()', 5000);
+            window.setInterval('Mostra_Hora()', 1000)
+
+            $("#txt_nome").on("keyup", function () {
+                $("#txt_sobrenome").val($("#txt_nome").val());
+            });
+
+            @*$("#txt_sobrenome").keyup(function () {
+                alert();
+            });*@
+        });
+
+        function Mostrar_Texto() {
+            var texto = "<h1 style='color:red'>Estamos em Outubro.</h1>";
+            $("#minha_div").html(texto);
+
+            //$("#minha_div").html("");
+        }
+
+        function Desabilita_Campo() {
+            //$("#txt_nome").attr("readonly", true);
+            //$("#txt_sobrenome").attr("readonly", true);
+            $("#txt_nome").attr("disabled", true);
+            $("#txt_sobrenome").attr("disabled", true);
+        }
+
+        function Mostrar_Campo() {
+            //$("#txt_nome").attr("readonly", false);
+            //$("#txt_sobrenome").attr("readonly", false);
+            $("#txt_nome").attr("disabled", false);
+            $("#txt_sobrenome").attr("disabled", false);
+        }
+
+        function Mostra_Nome_Msg() {
+            alert($("#txt_nome").val() + " " + $("#txt_sobrenome").val());
+        }
+
+        function Mostra_Nome() {
+            //alert($("#txt_nome").val());
+            //$("#txt_sobrenome").val("Olá Mundo!");
+            //$("#txt_sobrenome").val($("#txt_nome").val());
+            $("#txt_nome_sobrenome").val($("#txt_nome").val() + " " + $("#txt_sobrenome").val());
+            $("#btn_mostra_nome_msg").trigger(Mostra_Nome_Msg());
+        }
+    </script>
+}
+

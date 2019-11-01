@@ -19,22 +19,37 @@
     <br />
     <input type="button" id="btn_verde" name="btn_verde" onclick="Muda_Cor_Verde()" value="Verde" />
     <br />
-    <input type="button" id="btn_abre_div" value="Mostrar DIV" onclick="Mostra_Div()"/>
-
-    <input type="button" id="btn_fechar_div" value="Esconde DIV" onclick="Ocultar_Div()"/>
+    <input type="button" id="btn_abre_div" value="Mostrar DIV" onclick="Mostra_Div()" />
+    <br />
+    <input type="button" id="btn_fechar_div" value="Esconde DIV" onclick="Ocultar_Div()" />
     <br />
     <div id="div_texto">
         Aqui estão os melhores #énóis
     </div>
+    <br />
+    <hr />
+    <input type="button" id="btn_faz_tudo" value="Mostra/Esconde" onclick="Faz_Tudo()" />
+    <br />
+    <div id="div_ola_mundo">
+        <h2>Olá Mundo!</h2>
+    </div>
 </form>
 @section scripts{
     <script>
+        function Faz_Tudo() {
+            $("#div_ola_mundo").slideToggle();
+        }
+
         function Mostra_Div() {
             $("#div_texto").show();
+            $("#btn_abre_div").hide();
+            $("#btn_fechar_div").show();
         }
 
         function Ocultar_Div() {
             $("#div_texto").hide();
+            $("#btn_abre_div").show();
+            $("#btn_fechar_div").hide();
         }
 
         //Executa somente depois que carregou todo o HTML

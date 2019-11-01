@@ -11,9 +11,38 @@ namespace novo.Controllers
     {
         // GET: Materia
         FACEAR_2019Entities db = new FACEAR_2019Entities();
+
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Outros_Comandos_Jquery()
+        {
+            return View();
+        }
+
+        public JsonResult Retorna_Hora()
+        {
+            DateTime hora_atual = DateTime.Now;
+            string Nome_Autor = "Professor";
+
+            return Json(new
+            {
+                hora = hora_atual.ToString("dd/MM/yyyy"),
+                nome = Nome_Autor
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Retorna_Qtd_Letras(string nome, string sobrenome)
+        {
+            int qtd = nome.Length;
+            qtd += sobrenome.Length;
+            
+            return Json(new
+            {
+                qtd
+            }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Create()

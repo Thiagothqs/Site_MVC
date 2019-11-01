@@ -1,0 +1,104 @@
+﻿@model IEnumerable<novo.Models.Academico>
+
+@{
+    ViewBag.Title = "Listar_Academicos";
+}
+
+<h2>Listar_Academicos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+Nome: <input type="text" id="txt_nome" name="txt_nome" />
+<br />
+Sexo: <input type="text" id="txt_sexo" name="txt_sexo" />
+<br />
+Ativo: <input type="text" id="txt_ativo" name="txt_ativo" />
+<br />
+<input type="button" id="btn_busca_academico" value="Busca Academico" onclick="Busca_Academicos()" />
+
+
+<div id="tbl_academicos">
+    <table id="cs">
+
+    </table>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Academico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Excluido)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Academico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Materia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Excluido)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    function mostra_tabela_html(lista_de_alunos) {
+        for ($i = 0; $i < lista_de_alunos.length; $i++) {
+            $("#cs").append("<tr><td>" + lista_de_alunos[$i].Nome + "</td></tr>");
+        }
+    }
+
+    function Busca_Academicos() {
+            $.ajax({
+                url: '@Url.Action("Retorna_Lista_Academicos")',
+                type: 'POST',
+                data: { nome: $("#txt_nome").val(), sexo: $("#txt_sexo").val(), ativo: $("#txt_ativo").val() },
+                success: function (data) {
+                   //alert('É pa funfa');
+                   //$("#tbl_academicos").html(data);
+                   mostra_tabela_html(data.lista);
+                },
+                error: function (data) {
+                    alert('Errrouuuu');
+                    //alert(data);
+                }
+            });
+        }
+</script>
