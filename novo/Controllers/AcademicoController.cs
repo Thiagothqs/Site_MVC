@@ -92,6 +92,16 @@ namespace novo.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Cadastrar_Alunos_Notas(Academico ac, FormCollection form)
+        {
+            ac.Nota = (List<Nota>) Session["notas"];
+            db.Academico.Add(ac);
+            db.SaveChanges();
+
+            return View();
+        }
+
         public JsonResult Retorna_Lista_Academicos(string nome, string sexo, string ativo)
         {
             var lista = db.Academico.ToList();
@@ -121,6 +131,43 @@ namespace novo.Controllers
             return Json(new
             {
                 lista = lista_academicos
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Adicionar_Nota_Sessao(string nome, string n1, string n2, string n3, string n4)
+        {
+            Nota nota = new Nota();
+            nota.Nome_Materia = nome;
+            nota.Nota_I = Convert.ToDecimal(n1);
+            nota.Nota_II = Convert.ToDecimal(n2);
+            nota.Nota_III = Convert.ToDecimal(n3);
+            nota.Nota_IIII = Convert.ToDecimal(n4);
+
+            if (Session["notas"] != null)
+            {
+                ((List<Nota>) Session["notas"]).Add(nota);
+                nota.Id_Nota = ((List<Nota>)Session["notas"]).Count;
+            }
+            else
+            {
+                Session["notas"] = new List<Nota>();
+                ((List<Nota>)Session["notas"]).Add(nota);
+                nota.Id_Nota = ((List<Nota>)Session["notas"]).Count;
+            }
+
+            return Json(new
+            {
+                lista = Session["notas"]
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Remover_Nota_Sessao(int id)
+        {
+            ((List<Nota>)Session["notas"]).Remove(((List<Nota>)Session["notas"])[id-1]);
+
+            return Json(new
+            {
+                lista = Session["notas"]
             }, JsonRequestBehavior.AllowGet);
         }
     }

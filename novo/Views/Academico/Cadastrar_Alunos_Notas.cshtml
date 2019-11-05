@@ -10,72 +10,78 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Academico</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Academico, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_Academico, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Academico, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    <h4>Academico</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id_Academico, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Id_Academico, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Id_Academico, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sexo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Sexo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Materia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_Materia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Materia, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id_Materia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Id_Materia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Id_Materia, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Ativo)
-                    @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Excluido, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Excluido)
-                    @Html.ValidationMessageFor(model => model.Excluido, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        Notas
-
-        Matéria: <input type="text" id="txt_Materia" name="txt_Materia" /> N1: <input type="text" id="txt_N1" name="txt_N1" /> N2: <input type="text" id="txt_N2" name="txt_N2" /> N3: <input type="text" id="txt_N3" name="txt_N3" /> N4: <input type="text" id="txt_N4" name="txt_N4" /> <input type="button" id="btn_Nota" name="btn_Nota" onclick="Add_Nota()" value="Salvar" />
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Ativo)
+                @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Excluido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Excluido)
+                @Html.ValidationMessageFor(model => model.Excluido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    Notas
+    <br />
+    Matéria: <input type="text" id="txt_Materia" name="txt_Materia" /> N1: <input type="text" id="txt_N1" name="txt_N1" /> N2: <input type="text" id="txt_N2" name="txt_N2" /> N3: <input type="text" id="txt_N3" name="txt_N3" /> N4: <input type="text" id="txt_N4" name="txt_N4" /> <input type="button" id="btn_Nota" name="btn_Nota" onclick="Add_Nota()" value="Adicionar" />
+    Teste: <input type="text" id="txt_teste" name="txt_teste" /> 
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+
+    <div id="tbl_academicos">
+        <table id="cs"></table>
+    </div>
+
+</div>
 }
 
 <div>
@@ -84,7 +90,71 @@
 
 
 <script>
+    var lista_todos;
+
+    function mostra_tabela_html(lista_notas) {
+        lista_todos = lista_notas;
+        for ($i = 0; $i < lista_notas.length; $i++) {
+            $("#cs").append("<tr><td>" + lista_notas[$i].Nome_Materia + " - " + lista_notas[$i].Nota_I + " - " + lista_notas[$i].Nota_II + " - " + lista_notas[$i].Nota_III + " - " + lista_notas[$i].Nota_IIII + " <input type=button id=btn_Alt_Nota name=btn_Alt_Nota onclick=Alterar_Nota("+ $i +") value=Alterar /> <input type=button id=btn_Rem_Nota name=btn_Rem_Nota onclick=Remover_Nota($i) value=Excluir />  </td></tr >");
+        }
+    }
+    
+    function Motra_Id(x) {
+        $("#txt_teste").val(x.rowIndex);
+    }
+
     function Add_Nota() {
-        Session["notas"] = $("txt_Materia").val();
+        $.ajax({
+            url: '@Url.Action("Adicionar_Nota_Sessao")',
+            type: 'POST',
+            data: { nome: $("#txt_Materia").val(), n1: $("#txt_N1").val(), n2: $("#txt_N2").val(), n3: $("#txt_N3").val(), n4: $("#txt_N4").val() },
+            success: function (data) {
+                //alert('É pa funfa');
+                $("#cs tr").remove();
+                mostra_tabela_html(data.lista);
+                lista_todos = data.lista;
+
+                $("#txt_Materia").val("");
+                $("#txt_N1").val("");
+                $("#txt_N2").val("");
+                $("#txt_N3").val("");
+                $("#txt_N4").val("");
+            },
+            error: function (data) {
+                alert('Errrouuuu');
+                //alert(data);
+            }
+        });
+    }
+
+    function Alterar_Nota() {
+        //alert('Passou ' + (arguments[0])); // -1
+        //alert(lista_todos[(arguments[0])].Nome_Materia); //id_ // -1
+
+        $("#txt_Materia").val(lista_todos[(arguments[0])].Nome_Materia); //lista_atual[id_].Nome_Materia
+        $("#txt_N1").val(lista_todos[(arguments[0])].Nota_I);
+        $("#txt_N2").val(lista_todos[(arguments[0])].Nota_II);
+        $("#txt_N3").val(lista_todos[(arguments[0])].Nota_III);
+        $("#txt_N4").val(lista_todos[(arguments[0])].Nota_IIII);
+
+        //$("#txt_Materia").val("ADAM COLE BAY BAY");
+    }
+
+    function Remover_Nota(id_) {
+        $.ajax({
+            url: '@Url.Action("Remover_Nota_Sessao")',
+            type: 'POST',
+            data: { id: id_ },
+            success: function (data) {
+                alert('Remover');
+                alert(id_);
+                $("#cs tr").remove();
+                mostra_tabela_html(data.lista);
+            },
+            error: function (data) {
+                alert('Errrouuuu');
+                //alert(data);
+            }
+        });
     }
 </script>
