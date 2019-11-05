@@ -163,7 +163,7 @@ namespace novo.Controllers
 
         public JsonResult Remover_Nota_Sessao(int id)
         {
-            ((List<Nota>)Session["notas"]).Remove(((List<Nota>)Session["notas"])[id-1]);
+            ((List<Nota>)Session["notas"]).Remove(((List<Nota>)Session["notas"])[id]);
 
             return Json(new
             {

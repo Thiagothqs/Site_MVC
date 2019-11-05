@@ -69,8 +69,7 @@
     Notas
     <br />
     Matéria: <input type="text" id="txt_Materia" name="txt_Materia" /> N1: <input type="text" id="txt_N1" name="txt_N1" /> N2: <input type="text" id="txt_N2" name="txt_N2" /> N3: <input type="text" id="txt_N3" name="txt_N3" /> N4: <input type="text" id="txt_N4" name="txt_N4" /> <input type="button" id="btn_Nota" name="btn_Nota" onclick="Add_Nota()" value="Adicionar" />
-    Teste: <input type="text" id="txt_teste" name="txt_teste" /> 
-
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
@@ -95,14 +94,10 @@
     function mostra_tabela_html(lista_notas) {
         lista_todos = lista_notas;
         for ($i = 0; $i < lista_notas.length; $i++) {
-            $("#cs").append("<tr><td>" + lista_notas[$i].Nome_Materia + " - " + lista_notas[$i].Nota_I + " - " + lista_notas[$i].Nota_II + " - " + lista_notas[$i].Nota_III + " - " + lista_notas[$i].Nota_IIII + " <input type=button id=btn_Alt_Nota name=btn_Alt_Nota onclick=Alterar_Nota("+ $i +") value=Alterar /> <input type=button id=btn_Rem_Nota name=btn_Rem_Nota onclick=Remover_Nota($i) value=Excluir />  </td></tr >");
+            $("#cs").append("<tr><td>" + lista_notas[$i].Nome_Materia + " - " + lista_notas[$i].Nota_I + " - " + lista_notas[$i].Nota_II + " - " + lista_notas[$i].Nota_III + " - " + lista_notas[$i].Nota_IIII + " <input type=button id=btn_Alt_Nota name=btn_Alt_Nota onclick=Alterar_Nota(" + $i + ") value=Alterar /> <input type=button id=btn_Rem_Nota name=btn_Rem_Nota onclick=Remover_Nota(" + $i +") value=Excluir />  </td></tr >");
         }
     }
     
-    function Motra_Id(x) {
-        $("#txt_teste").val(x.rowIndex);
-    }
-
     function Add_Nota() {
         $.ajax({
             url: '@Url.Action("Adicionar_Nota_Sessao")',
@@ -137,6 +132,7 @@
         $("#txt_N3").val(lista_todos[(arguments[0])].Nota_III);
         $("#txt_N4").val(lista_todos[(arguments[0])].Nota_IIII);
 
+        Remover_Nota(arguments[0]);
         //$("#txt_Materia").val("ADAM COLE BAY BAY");
     }
 
@@ -146,8 +142,8 @@
             type: 'POST',
             data: { id: id_ },
             success: function (data) {
-                alert('Remover');
-                alert(id_);
+                //alert('Remover');
+                //alert(id_);
                 $("#cs tr").remove();
                 mostra_tabela_html(data.lista);
             },
