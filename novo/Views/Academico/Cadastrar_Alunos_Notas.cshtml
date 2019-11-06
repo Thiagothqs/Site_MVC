@@ -94,7 +94,8 @@
     function mostra_tabela_html(lista_notas) {
         lista_todos = lista_notas;
         for ($i = 0; $i < lista_notas.length; $i++) {
-            $("#cs").append("<tr><td>" + lista_notas[$i].Nome_Materia + " - " + lista_notas[$i].Nota_I + " - " + lista_notas[$i].Nota_II + " - " + lista_notas[$i].Nota_III + " - " + lista_notas[$i].Nota_IIII + " <input type=button id=btn_Alt_Nota name=btn_Alt_Nota onclick=Alterar_Nota(" + $i + ") value=Alterar /> <input type=button id=btn_Rem_Nota name=btn_Rem_Nota onclick=Remover_Nota(" + $i +") value=Excluir />  </td></tr >");
+            var arr = JSON.stringify(lista_notas[$i]); // converts your array to json
+            $("#cs").append("<tr><td>" + lista_notas[$i].Nome_Materia + " - " + lista_notas[$i].Nota_I + " - " + lista_notas[$i].Nota_II + " - " + lista_notas[$i].Nota_III + " - " + lista_notas[$i].Nota_IIII + " <input type=button id=btn_Alt_Nota name=btn_Alt_Nota onclick=Alterar_Nota(" + arr + ","+ $i +") value=Alterar /> <input type=button id=btn_Rem_Nota name=btn_Rem_Nota onclick=Remover_Nota(" + $i +") value=Excluir />  </td></tr >");
         }
     }
     
@@ -102,7 +103,7 @@
         $.ajax({
             url: '@Url.Action("Adicionar_Nota_Sessao")',
             type: 'POST',
-            data: { nome: $("#txt_Materia").val(), n1: $("#txt_N1").val(), n2: $("#txt_N2").val(), n3: $("#txt_N3").val(), n4: $("#txt_N4").val() },
+            data: { nome: $("#txt_Materia").val(), n1: $("#txt_N1").val(), n2: $("#txt_N2").val(), n3: $("#txt_N3").val(), n4: $("#txt_N4").val(), posicao: sessionStorage.getItem("posicao") },
             success: function (data) {
                 //alert('É pa funfa');
                 $("#cs tr").remove();
@@ -114,6 +115,8 @@
                 $("#txt_N2").val("");
                 $("#txt_N3").val("");
                 $("#txt_N4").val("");
+
+                sessionStorage.setItem("posicao", "");
             },
             error: function (data) {
                 alert('Errrouuuu');
@@ -126,13 +129,15 @@
         //alert('Passou ' + (arguments[0])); // -1
         //alert(lista_todos[(arguments[0])].Nome_Materia); //id_ // -1
 
-        $("#txt_Materia").val(lista_todos[(arguments[0])].Nome_Materia); //lista_atual[id_].Nome_Materia
-        $("#txt_N1").val(lista_todos[(arguments[0])].Nota_I);
-        $("#txt_N2").val(lista_todos[(arguments[0])].Nota_II);
-        $("#txt_N3").val(lista_todos[(arguments[0])].Nota_III);
-        $("#txt_N4").val(lista_todos[(arguments[0])].Nota_IIII);
+        $("#txt_Materia").val(arguments[0].Nome_Materia); //lista_atual[id_].Nome_Materia
+        $("#txt_N1").val(arguments[0].Nota_I);
+        $("#txt_N2").val(arguments[0].Nota_II);
+        $("#txt_N3").val(arguments[0].Nota_III);
+        $("#txt_N4").val(arguments[0].Nota_IIII);
 
-        Remover_Nota(arguments[0]);
+        sessionStorage.setItem("posicao", arguments[1]);
+        //alert(sessionStorage.getItem("posicao"));
+        //Remover_Nota(arguments[0]);
         //$("#txt_Materia").val("ADAM COLE BAY BAY");
     }
 

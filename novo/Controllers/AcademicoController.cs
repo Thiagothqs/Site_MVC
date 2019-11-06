@@ -134,7 +134,7 @@ namespace novo.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Adicionar_Nota_Sessao(string nome, string n1, string n2, string n3, string n4)
+        public JsonResult Adicionar_Nota_Sessao(string nome, string n1, string n2, string n3, string n4, string posicao)
         {
             Nota nota = new Nota();
             nota.Nome_Materia = nome;
@@ -143,16 +143,24 @@ namespace novo.Controllers
             nota.Nota_III = Convert.ToDecimal(n3);
             nota.Nota_IIII = Convert.ToDecimal(n4);
 
-            if (Session["notas"] != null)
+            //System.Diagnostics.Debug.WriteLine("aaaaaaaaaaaaaaaaaaAAAAAAAAAA" + posicao);
+            if (posicao == "")
             {
-                ((List<Nota>) Session["notas"]).Add(nota);
-                nota.Id_Nota = ((List<Nota>)Session["notas"]).Count;
+                if (Session["notas"] != null)
+                {
+                    ((List<Nota>)Session["notas"]).Add(nota);
+                    nota.Id_Nota = ((List<Nota>)Session["notas"]).Count;
+                }
+                else
+                {
+                    Session["notas"] = new List<Nota>();
+                    ((List<Nota>)Session["notas"]).Add(nota);
+                    nota.Id_Nota = ((List<Nota>)Session["notas"]).Count;
+                }
             }
             else
             {
-                Session["notas"] = new List<Nota>();
-                ((List<Nota>)Session["notas"]).Add(nota);
-                nota.Id_Nota = ((List<Nota>)Session["notas"]).Count;
+                ((List<Nota>)Session["notas"])[Convert.ToInt32(posicao)] = nota;
             }
 
             return Json(new
