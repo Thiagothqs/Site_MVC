@@ -14,15 +14,15 @@ Nome: <input type="text" id="txt_nome" name="txt_nome" />
 <br />
 Sexo: <input type="text" id="txt_sexo" name="txt_sexo" />
 <br />
-Ativo: <input type="text" id="txt_ativo" name="txt_ativo" />
+Ativo:
+<label>SIM</label><input type="radio" id="radio_ativoTrue" name="radio_ativo" value="true" checked >
+<label>NÃO</label><input type="radio" id="radio_ativoFalse" name="radio_ativo" value="false" >
 <br />
 <input type="button" id="btn_busca_academico" value="Busca Academico" onclick="Busca_Academicos()" />
 
 
 <div id="tbl_academicos">
-    <table id="cs">
-
-    </table>
+    <table id="cs"></table>
 </div>
 
 <table class="table">
@@ -70,7 +70,7 @@ Ativo: <input type="text" id="txt_ativo" name="txt_ativo" />
                 @Html.DisplayFor(modelItem => item.Excluido)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "Alterar_Alunos_Notas", new { id=item.Id_Academico }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
@@ -78,22 +78,85 @@ Ativo: <input type="text" id="txt_ativo" name="txt_ativo" />
     }
 
 </table>
-<script>
-    function mostra_tabela_html(lista_de_alunos) {
-        for ($i = 0; $i < lista_de_alunos.length; $i++) {
-            $("#cs").append("<tr><td>" + lista_de_alunos[$i].Nome + "</td></tr>");
-        }
-    }
+@section scripts{
+    <script>
+        //Executa somente depois que carregou todo o HTML
+        $(document).ready(function () {
+            $("#txt_nome").on("keyup", function () {
+                $("#cs tr").remove();
+                $.ajax({
+                    url: '@Url.Action("Retorna_Lista_Academicos")',
+                    type: 'POST',
+                    data: { nome: $("#txt_nome").val(), sexo: $("#txt_sexo").val(), ativo: $('input[type=radio][name=radio_ativo]:checked').val() },
+                    success: function (data) {
+                        //alert('É pa funfa');
+                        //$("#tbl_academicos").html(data);
+                        mostra_tabela_html(data.lista);
+                    },
+                    error: function (data) {
+                        alert('Errrouuuu');
+                        //alert(data);
+                    }
+                });
+            });
 
-    function Busca_Academicos() {
+            $("#txt_sexo").on("keyup", function () {
+                $("#cs tr").remove();
+                $.ajax({
+                    url: '@Url.Action("Retorna_Lista_Academicos")',
+                    type: 'POST',
+                    data: { nome: $("#txt_nome").val(), sexo: $("#txt_sexo").val(), ativo: $('input[type=radio][name=radio_ativo]:checked').val() },
+                    success: function (data) {
+                        //alert('É pa funfa');
+                        //$("#tbl_academicos").html(data);
+                        mostra_tabela_html(data.lista);
+                    },
+                    error: function (data) {
+                        alert('Errrouuuu');
+                        //alert(data);
+                    }
+                });
+            });
+
+            //if ($('input[name=radio_ativo]:checked')) {
+            //    alert('Lambda lambda lambda');
+            //}
+
+            $('input[type=radio][name=radio_ativo]').change( function () {
+                $("#cs tr").remove();
+                $.ajax({
+                    url: '@Url.Action("Retorna_Lista_Academicos")',
+                    type: 'POST',
+                    data: { nome: $("#txt_nome").val(), sexo: $("#txt_sexo").val(), ativo: $('input[type=radio][name=radio_ativo]:checked').val() },
+                    success: function (data) {
+                        //alert('Lambda lambda lambda');
+                        //alert('É pa funfa');
+                        //$("#tbl_academicos").html(data);
+                        mostra_tabela_html(data.lista);
+                    },
+                    error: function (data) {
+                        alert('Errrouuuu');
+                        //alert(data);
+                    }
+                });
+            });
+        });
+
+        function mostra_tabela_html(lista_de_alunos) {
+            for ($i = 0; $i < lista_de_alunos.length; $i++) {
+                $("#cs").append("<tr><td>" + lista_de_alunos[$i].Nome + "</td></tr>");
+            }
+        }
+
+        function Busca_Academicos() {
             $.ajax({
                 url: '@Url.Action("Retorna_Lista_Academicos")',
                 type: 'POST',
-                data: { nome: $("#txt_nome").val(), sexo: $("#txt_sexo").val(), ativo: $("#txt_ativo").val() },
+                data: { nome: $("#txt_nome").val(), sexo: $("#txt_sexo").val(), ativo: $('input[type=radio][name=radio_ativo]:checked').val() },
                 success: function (data) {
-                   //alert('É pa funfa');
-                   //$("#tbl_academicos").html(data);
-                   mostra_tabela_html(data.lista);
+                    //alert('É pa funfa');
+                    //$("#tbl_academicos").html(data);
+                    mostra_tabela_html(data.lista);
                 },
                 error: function (data) {
                     alert('Errrouuuu');
@@ -101,4 +164,5 @@ Ativo: <input type="text" id="txt_ativo" name="txt_ativo" />
                 }
             });
         }
-</script>
+    </script>
+}

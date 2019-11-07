@@ -1,6 +1,7 @@
 ﻿using novo.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -92,6 +93,35 @@ namespace novo.Controllers
             return View();
         }
 
+        public ActionResult Alterar_Alunos_Notas(int id)
+        {
+            var academico = db.Academico.Find(id);
+            return View(academico);
+        }
+
+        [HttpPost]
+        public ActionResult Alterar_Alunos_Notas(Academico ac)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Entry(ac).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Listar_Academicos");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message.ToString());
+                    return View(ac);
+                }
+            }
+            else
+            {
+                return View(ac);
+            }
+        }
+
         [HttpPost]
         public ActionResult Cadastrar_Alunos_Notas(Academico ac, FormCollection form)
         {
@@ -105,6 +135,8 @@ namespace novo.Controllers
         public JsonResult Retorna_Lista_Academicos(string nome, string sexo, string ativo)
         {
             var lista = db.Academico.ToList();
+            
+            //System.Diagnostics.Debug.WriteLine("aaaaaaaaaaaaaaaaaaAAAAAAAAAA" + ativo);
 
             if (nome != null && nome != "")
             {
@@ -114,9 +146,10 @@ namespace novo.Controllers
             {
                 lista = db.Academico.Where(x => x.Sexo.Equals(sexo)).ToList();
             }
-            else if (ativo != null)
+            else if (ativo != null && ativo != "")
             {
-                lista = db.Academico.Where(x => x.Ativo.Equals(ativo)).ToList();
+                bool vamo = Convert.ToBoolean(ativo);
+                lista = db.Academico.Where(x => x.Ativo.Equals(vamo)).ToList();
             }
 
             List<Academico> lista_academicos = new List<Academico>();
