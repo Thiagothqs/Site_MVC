@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Minha Agenda Virtual</h2>
+
+Data: <input type="text" id="txt_data" name="txt_data" /> Anotação: <input type="text" id="txt_anotacao" name="txt_anotacao" /> <input type="button" id="btn_Salvar" name="btn_Salvar" onclick="Add_Anotacao()" value="Salvar" />
+
+<div id="div_listagem">
+    <table id="tabela" border="1">
+
+    </table>
+</div>
+
+@section scripts{
+    <script>
+        //Executa somente depois que carregou todo o HTML
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("Retorna_Lista")',
+                type: 'GET',
+                data: { },
+                success: function (data) {
+                    $("#tabela tr").remove();
+                    mostra_tabela_html(data.lista);
+                },
+                error: function (data) {
+                    alert('Errrouuuu');
+                }
+            });
+        });
+
+        function mostra_tabela_html(lista_agenda) {
+            for ($i = 0; $i < lista_agenda.length; $i++) {
+                //var arr = JSON.stringify(lista_agenda[$i]); // converts your array to json
+                $("#tabela").append("<tr><td>" + lista_agenda[$i].Data + " - " + lista_agenda[$i].Anotacao + " <input type=button id=btn_Alt_Anotacao name=btn_Alt_Anotacao onclick=Preenche_Campos(" + lista_agenda[$i].Id_Agenda + ") value=Alterar /> <input type=button id=btn_Rem_Anotacao name=btn_Rem_Anotacao onclick=Excluir_Anotacao(" + lista_agenda[$i].Id_Agenda + ") value=Excluir />  </td></tr >");
+            }
+        }
+
+        function Add_Anotacao() {
+            $.ajax({
+                url: '@Url.Action("Add_Anotacao")',
+                type: 'POST',
+                data: { data: $("#txt_data").val(), anotacao: $("#txt_anotacao").val(), id: sessionStorage.getItem("posicao") },
+                success: function (data) {
+                    $("#tabela tr").remove();
+                    mostra_tabela_html(data.lista);
+
+                    $("#txt_data").val("");
+                    $("#txt_anotacao").val("");
+
+                    sessionStorage.setItem("posicao", "");
+                },
+                error: function (data) {
+                    alert('Errrouuuu');
+                }
+            });
+        }
+
+        function Excluir_Anotacao() {
+            $.ajax({
+                url: '@Url.Action("Excluir_Anotacao")',
+                type: 'POST',
+                data: { id: arguments[0] },
+                success: function (data) {
+                    $("#tabela tr").remove();
+                    mostra_tabela_html(data.lista);
+
+                    $("#txt_data").val("");
+                    $("#txt_anotacao").val("");
+                },
+                error: function (data) {
+                    alert('Errrouuuu');
+                }
+            });
+        }
+
+        function Preenche_Campos() {
+            sessionStorage.setItem("posicao", arguments[0]);
+
+            $.ajax({
+                url: '@Url.Action("Preenche_Campos")',
+                type: 'POST',
+                data: { id: arguments[0] },
+                success: function (data) {
+                    $("#txt_data").val(data.dataAtual);
+                    $("#txt_anotacao").val(data.Anotacao);
+                },
+                error: function (data) {
+                    alert('Errrouuuu');
+                }
+            });
+        }
+
+        function Alterar_Anotacao() {
+            $.ajax({
+                url: '@Url.Action("Alterar_Anotacao")',
+                type: 'POST',
+                data: { data: $("#txt_data").val(), anotacao: $("#txt_anotacao").val(), id: arguments[0] },
+                success: function (data) {
+                    $("#tabela tr").remove();
+                    mostra_tabela_html(data.lista);
+
+                    $("#txt_data").val("");
+                    $("#txt_anotacao").val("");
+                },
+                error: function (data) {
+                    alert('Errrouuuu');
+                }
+            });
+        }
+    </script>
+}

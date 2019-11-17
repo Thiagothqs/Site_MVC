@@ -72,26 +72,29 @@
 
     <div id="tbl_academicos">
         <table id="cs" border="1">
-            @foreach (var item in Model.Nota)
+            @for(int i=0; i< Model.Nota.ToList().Count; i++)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Nome_Materia)
+                        @Html.DisplayFor(modelItem => Model.Nota.ToList()[i].Id_Nota)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Nota_I)
+                        @Html.DisplayFor(modelItem => Model.Nota.ToList()[i].Nome_Materia)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Nota_II)
+                        @Html.DisplayFor(modelItem => Model.Nota.ToList()[i].Nota_I)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Nota_III)
+                        @Html.DisplayFor(modelItem => Model.Nota.ToList()[i].Nota_II)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Nota_IIII)
+                        @Html.DisplayFor(modelItem => Model.Nota.ToList()[i].Nota_III)
                     </td>
                     <td>
-                        <input type="button" id="btn_Alt_Nota" name="btn_Alt_Nota" onclick="Alterar_Nota('@item.Nome_Materia','@item.Nota_I','@item.Nota_II','@item.Nota_III','@item.Nota_IIII')" value="Alterar" />
+                        @Html.DisplayFor(modelItem => Model.Nota.ToList()[i].Nota_IIII)
+                    </td>
+                    <td>
+                        <input type="button" id="btn_Alt_Nota" name="btn_Alt_Nota" onclick="Alterar_Nota('@Model.Nota.ToList()[i].Nome_Materia','@Model.Nota.ToList()[i].Nota_I','@Model.Nota.ToList()[i].Nota_II','@Model.Nota.ToList()[i].Nota_III','@Model.Nota.ToList()[i].Nota_IIII', '@i', '@Model.Nota.ToList()[i].Id_Nota')" value="Alterar" />
                     </td>
                 </tr>
             }
@@ -111,19 +114,29 @@
 </div>
 @section scripts{
     <script>
+        function mostra_tabela_html(lista_notas) {
+            for ($i = 0; $i < lista_notas.length; $i++) {
+                var arr = JSON.stringify(lista_notas[$i]); // converts your array to json
+                $("#cs").append("<tr><td>" + lista_notas[$i].Nome_Materia + " - " + lista_notas[$i].Nota_I + " - " + lista_notas[$i].Nota_II + " - " + lista_notas[$i].Nota_III + " - " + lista_notas[$i].Nota_IIII + " <input type=button id=btn_Alt_Nota name=btn_Alt_Nota onclick=Alterar_Nota(" + arr + "," + $i + ") value=Alterar /> <input type=button id=btn_Rem_Nota name=btn_Rem_Nota onclick=Remover_Nota(" + $i + ") value=Excluir />  </td></tr >");
+            }
+        }
+
         function Alterar_Nota() {
             $("#txt_Materia").val(arguments[0]); //lista_atual[id_].Nome_Materia
             $("#txt_N1").val(arguments[1]);
             $("#txt_N2").val(arguments[2]);
             $("#txt_N3").val(arguments[3]);
             $("#txt_N4").val(arguments[4]);
+
+            sessionStorage.setItem("posicao", arguments[5]);
+            sessionStorage.setItem("idNota", arguments[6]);
         }
 
         function Add_Nota() {
         $.ajax({
-            url: '@Url.Action("Adicionar_Nota_Sessao")',
+            url: '@Url.Action("Alterar_Adicionar_Nota")',
             type: 'POST',
-            data: { nome: $("#txt_Materia").val(), n1: $("#txt_N1").val(), n2: $("#txt_N2").val(), n3: $("#txt_N3").val(), n4: $("#txt_N4").val(), posicao: sessionStorage.getItem("posicao") },
+            data: { nome: $("#txt_Materia").val(), n1: $("#txt_N1").val(), n2: $("#txt_N2").val(), n3: $("#txt_N3").val(), n4: $("#txt_N4").val(), posicao: sessionStorage.getItem("posicao"), idNota: sessionStorage.getItem("idNota") },
             success: function (data) {
                 $("#cs tr").remove();
                 mostra_tabela_html(data.lista);
@@ -135,6 +148,7 @@
                 $("#txt_N4").val("");
 
                 sessionStorage.setItem("posicao", "");
+                sessionStorage.setItem("idNota", "");
             },
             error: function (data) {
                 alert('Errrouuuu');

@@ -211,5 +211,61 @@ namespace novo.Controllers
                 lista = Session["notas"]
             }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult Alterar_Adicionar_Nota(string nome, string n1, string n2, string n3, string n4, string posicao, string idNota)
+        {
+            Nota nota = new Nota();
+            nota.Nome_Materia = nome;
+            nota.Nota_I = Convert.ToDecimal(n1);
+            nota.Nota_II = Convert.ToDecimal(n2);
+            nota.Nota_III = Convert.ToDecimal(n3);
+            nota.Nota_IIII = Convert.ToDecimal(n4);
+
+            Session["todos"] = new List<Nota>();
+            //System.Diagnostics.Debug.WriteLine("aaaaaaaaaaaaaaaaaaAAAAAAAAAA" + posicao);
+            if (idNota != "")
+            {
+                var nota_academico = db.Nota.Find(idNota);
+                var notas = db.Nota.Where(x => x.Id_Academico == nota_academico.Id_Academico).ToList();
+                
+                for(int i=0; i < notas.Count(); i++)
+                {
+                    if (notas[i].Id_Nota == nota_academico.Id_Nota)
+                    {
+                        notas[i] = nota;
+                    }
+                    ((List<Nota>) Session["todos"]).Add(notas[i]);
+                }
+            }
+            else if (posicao == "")
+            {
+                if (Session["notas"] != null)
+                {
+                    ((List<Nota>)Session["notas"]).Add(nota);
+                    //nota.Id_Nota = ((List<Nota>)Session["notas"]).Count;
+                }
+                else
+                {
+                    Session["notas"] = new List<Nota>();
+                    ((List<Nota>)Session["notas"]).Add(nota);
+                    //nota.Id_Nota = ((List<Nota>)Session["notas"]).Count;
+                }
+            }
+            else
+            {
+                ((List<Nota>)Session["notas"])[Convert.ToInt32(posicao)] = nota;
+            }
+
+            for (int i = 0; i < ((List<Nota>) Session["notas"]).Count; i++)
+            {
+                //var esse = 
+                ((List<Nota>)Session["todos"]).Add(((List<Nota>) Session["notas"])[i]);
+            }
+
+            return Json(new
+            {
+                lista = Session["todos"]
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

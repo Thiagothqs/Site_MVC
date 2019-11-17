@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<label>Cep</label>
+<input type="text" id="txt_cep" name="txt_cep" />
+<input type="button" id="btn_buscar" name="btn_buscar" onclick="Buscar_Cep()" value="BUSCAR"/>
+
+@section scripts{
+    <script>
+        function Buscar_Cep() {
+            $.ajax({
+                url: "http://localhost:52131/WebService.asmx/Busca_Cep",
+                dataType: "application/json",
+                type: "POST",
+                data: { cep: $("#txt_cep").val() },
+                sucess: function (data) {
+                    var retorno = JSON.stringify(data);
+                    alert(retorno);
+                },
+                error: function (data) {
+                    var retorno = JSON.stringify(data);
+                    alert(retorno);
+                    //alert('Deu algum erro');
+                }
+            });
+        }
+    </script>
+}

@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvaBimestral", "ProvaBime
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercicio_17_10_19", "Exercicio_17_10_19\Exercicio_17_10_19.csproj", "{23E6CCDE-FBCC-4224-85AC-F03CEBBA231C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaVirtual", "AgendaVirtual\AgendaVirtual.csproj", "{20F650D6-4EFF-48AC-8D18-C9CED4F4BF15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_WebServices", "MVC_WebServices\MVC_WebServices.csproj", "{54D3BBE1-859A-4655-A243-D5F683A4CD56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{23E6CCDE-FBCC-4224-85AC-F03CEBBA231C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E6CCDE-FBCC-4224-85AC-F03CEBBA231C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E6CCDE-FBCC-4224-85AC-F03CEBBA231C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20F650D6-4EFF-48AC-8D18-C9CED4F4BF15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F650D6-4EFF-48AC-8D18-C9CED4F4BF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F650D6-4EFF-48AC-8D18-C9CED4F4BF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F650D6-4EFF-48AC-8D18-C9CED4F4BF15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54D3BBE1-859A-4655-A243-D5F683A4CD56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D3BBE1-859A-4655-A243-D5F683A4CD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D3BBE1-859A-4655-A243-D5F683A4CD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D3BBE1-859A-4655-A243-D5F683A4CD56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
