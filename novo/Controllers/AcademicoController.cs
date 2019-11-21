@@ -152,6 +152,18 @@ namespace novo.Controllers
                 lista = db.Academico.Where(x => x.Ativo.Equals(vamo)).ToList();
             }
 
+            // Atualizado buscando todos
+            /*if (sexo != null && sexo != "")
+            {
+                bool vamo = Convert.ToBoolean(ativo);
+                lista = db.Academico.Where(x => x.Nome.Contains(nome) && x.Sexo.Equals(sexo) && x.Ativo.Equals(vamo)).ToList();
+            }
+            else
+            {
+                bool vamo = Convert.ToBoolean(ativo);
+                lista = db.Academico.Where(x => x.Nome.Contains(nome) && x.Ativo.Equals(vamo)).ToList();
+            }*/
+
             List<Academico> lista_academicos = new List<Academico>();
             foreach (var item in lista)
             {
